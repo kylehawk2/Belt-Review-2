@@ -14,7 +14,7 @@
     {% for rev in review %}
         <li><h4>Book Title: <a href='/book/{{ rev.book.id }}'>{{ rev.book.title }}</a></h4></li>
         <li>{{ rev.review }}</li>
-        <li><h4>Reviewer: <a href='/user/{{ rev.user.id }}'>{{ rev.user.name }}</a></h4></li>
+        <h4>Reviewer: <a href='/user/{{ rev.user.id }}'>{{ rev.user.name }}</a></h4>
     {% endfor %}
 </body>
 </html>

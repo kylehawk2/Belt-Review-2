@@ -79,3 +79,16 @@ def create(request):
         Review.objects.create(review=request.POST['review'], book=Book.objects.get(id = r.id), user = User.objects.get(email=request.session['email']))
     return redirect('/home')
 
+def user(request, id):
+    context = {
+        'users' : User.objects.get(id=request.session['id']),
+        'review' : Review.objects.filter(user=User.objects.get(id=id)).order_by('-created_at'),
+        'review_count' : Review.objects.filter(user = User.objects.get(id=id)).order_by('created_at').count()
+    }
+    return render(request, 'belt/user.html', context)
+
+def book(request, id):
+    context = {
+        'books' : Book.objects.get(id=id),
+    }
+    return render(request, 'belt/book.html', context)
